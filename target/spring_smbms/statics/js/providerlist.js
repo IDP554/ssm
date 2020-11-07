@@ -4,8 +4,8 @@ var providerObj;
 function deleteProvider(obj){
 	$.ajax({
 		type:"GET",
-		url:path+"/jsp/provider.do",
-		data:{method:"delprovider",proid:obj.attr("proid")},
+		url:"/delProvider",
+		data:{proid:obj.attr("proid")},
 		dataType:"json",
 		success:function(data){
 			if(data.delResult == "true"){//删除成功：移除删除行
@@ -46,12 +46,12 @@ $(function(){
 	$(".viewProvider").on("click",function(){
 		//将被绑定的元素（a）转换成jquery对象，可以使用jquery方法
 		var obj = $(this);
-		window.location.href=path+"/jsp/provider.do?method=view&proid="+ obj.attr("proid");
+		window.location.href=path+"/viewProvider.html?proid="+ obj.attr("proid");
 	});
 	
 	$(".modifyProvider").on("click",function(){
 		var obj = $(this);
-		window.location.href=path+"/jsp/provider.do?method=modify&proid="+ obj.attr("proid");
+		window.location.href=path+"/providermodify.html?proid="+ obj.attr("proid");
 	});
 
 	$('#no').click(function () {
@@ -62,19 +62,19 @@ $(function(){
 		deleteProvider(providerObj);
 	});
 
-	$(".deleteProvider").on("click",function(){
-		providerObj = $(this);
-		changeDLGContent("你确定要删除供应商【"+providerObj.attr("proname")+"】吗？");
-		openYesOrNoDLG();
-	});
+	// $(".deleteProvider").on("click",function(){
+	// 	providerObj = $(this);
+	// 	changeDLGContent("你确定要删除供应商【"+providerObj.attr("proname")+"】吗？");
+	// 	openYesOrNoDLG();
+	// });
 	
-/*	$(".deleteProvider").on("click",function(){
+	$(".deleteProvider").on("click",function(){
 		var obj = $(this);
 		if(confirm("你确定要删除供应商【"+obj.attr("proname")+"】吗？")){
 			$.ajax({
 				type:"GET",
-				url:path+"/jsp/provider.do",
-				data:{method:"delprovider",proid:obj.attr("proid")},
+				url:path+"/delProvider",
+				data:{proid:obj.attr("proid")},
 				dataType:"json",
 				success:function(data){
 					if(data.delResult == "true"){//删除成功：移除删除行
@@ -93,5 +93,5 @@ $(function(){
 				}
 			});
 		}
-	});*/
+	});
 });

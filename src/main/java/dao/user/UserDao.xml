@@ -12,7 +12,7 @@
     </select>
     <select id="getUserList" resultType="user">
         select u.*,r.roleName as userRoleName from smbms_user u inner join smbms_role r on u.userRole = r.id
-        <trim prefix="where" prefixOverrides="and" suffix="order by creationDate DESC limit #{currentPageNo},#{pageSize}">
+        <trim prefix="where" prefixOverrides="and">
             <if test="userName !=null and userName != ''">
                 and u.userName like concat('%',#{userName},'%')
             </if>
@@ -20,6 +20,7 @@
                 and u.userRole = #{userRole}
             </if>
         </trim>
+        order by creationDate DESC limit #{currentPageNo},#{pageSize}
     </select>
     <delete id="deleteUserById" parameterType="int">
         delete from smbms_user where id = #{delId};

@@ -70,7 +70,11 @@ public class UserServiceImpl implements UserService{
 		System.out.print("当前页码 ---- > " + currentPageNo + "\t");
 		System.out.println("单页最大显示 ---- > " + pageSize);
 		try {
+			currentPageNo = (currentPageNo-1)*pageSize;
 			userList = userDao.getUserList(queryUserName,queryUserRole,currentPageNo,pageSize);
+			for (User user:userList) {
+				System.out.println(user);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -132,36 +136,24 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public boolean modify(User user) {
-		// TODO Auto-generated method stub
-		Connection connection = null;
 		boolean flag = false;
 		try {
-			connection = BaseDao.getConnection();
 			if(userDao.modify(user) > 0)
 				flag = true;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
-			BaseDao.closeResource(connection, null, null);
 		}
 		return flag;
 	}
 
 	@Override
 	public boolean updatePwd(int id, String pwd) {
-		// TODO Auto-generated method stub
 		boolean flag = false;
-		Connection connection = null;
 		try{
-			connection = BaseDao.getConnection();
 			if(userDao.updatePwd(id,pwd) > 0)
 				flag = true;
 		}catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
-		}finally{
-			BaseDao.closeResource(connection, null, null);
 		}
 		return flag;
 	}

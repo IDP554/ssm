@@ -101,7 +101,8 @@ public class LoginController extends BasicController {
         model.addAttribute("userList", userList);
         List<Role> roleList = null;
         roleList = roleService.getRoleList();
-        System.out.println("=====================》\n"+roleList);
+        System.out.println("=====================》"+roleList);
+        System.out.println("=====================》"+userList);
         model.addAttribute("roleList", roleList);
         model.addAttribute("queryUserName", queryname);
         model.addAttribute("queryUserRole", queryUserRole);

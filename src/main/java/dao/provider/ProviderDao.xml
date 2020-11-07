@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.provider.ProviderDao">
+    <insert id="add" parameterType="provider">
+        insert into smbms_provider (proCode,proName,proDesc,proContact,proPhone,proAddress,proFax,createdBy,creationDate)
+        values(#{proCode},#{proName},#{proDesc},#{proContact},#{proPhone},#{proAddress},#{proFax},#{createdBy},#{creationDate})
+    </insert>
+    <select id="getProviderList" resultType="provider">
+        select * from smbms_provider
+        <trim prefix="where" prefixOverrides="and">
+            <if test="proName != null and proName != ''">
+                and proName like concat('%',#{proName},'%')
+            </if>
+            <if test="proCode != null and proCode != ''">
+                and proCode like concat('%',#{proCode},'%')
+            </if>
+        </trim>
+    </select>
+    <delete id="deleteProviderById">
+        delete from smbms_provider where id=#{delId}
+    </delete>
+    <select id="getProviderById" resultType="provider">
+        select * from smbms_provider where id=#{id}
+    </select>
+    <update id="modify" parameterType="provider">
+        update smbms_provider
+        <trim prefix="set" suffixOverrides="," suffix="where id = #{id}">
+            <if test="proName != null and proName != ''">proName=#{proName},</if>
+            <if test="proDesc != null and proDesc != ''">proDesc=#{proDesc},</if>
+            <if test="proContact != null and proContact != ''">proContact=#{proContact},</if>
+            <if test="proPhone != null and proPhone != ''">proPhone=#{proPhone},</if>
+            <if test="proAddress != null and proAddress != ''">proAddress=#{proAddress},</if>
+            <if test="proFax != null and proFax != ''">proFax=#{proFax},</if>
+            <if test="modifyBy != null and modifyBy != ''">modifyBy=#{modifyBy},</if>
+            <if test="modifyDate != null and modifyDate != ''">modifyDate=#{modifyDate},</if>
+        </trim>
+    </update>
+</mapper>

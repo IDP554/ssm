@@ -30,7 +30,7 @@ public interface UserDao {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<User> getUserList(@Param("userName") String userName,@Param("userRole") int userRole,@Param("currentPageNo") int currentPageNo,@Param("pageSize") int pageSize)throws Exception;
+	public List<User> getUserList(@Param("userName") String userName,@Param("userRole") int userRole,@Param("currentPageNo") Integer currentPageNo,@Param("pageSize") Integer pageSize)throws Exception;
 
 	/**
 	 * 通过条件查询-用户表记录数

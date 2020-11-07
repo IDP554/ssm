@@ -56,7 +56,7 @@
                 <property name="supportedMediaTypes">
                     <list>
                         <value>text/html;charset=utf-8</value>
-                        <value>application/json</value>
+                        <value>application/json;charset=utf-8</value>
                     </list>
                 </property>
                 <property name="features">
@@ -77,5 +77,20 @@
                 </bean>
             </set>
         </property>
+    </bean>
+
+    <!-- 配置多视图解析器：允许同样的内容数据呈现不同的view -->
+    <bean id="contentNegotiationManager"  class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="favorParameter" value="true"/>
+        <property name="parameterName" value="format"/>
+        <property name="ignoreAcceptHeader" value="false"/>
+        <property name="mediaTypes">
+            <value>
+                json=application/json
+                xml=application/xml
+                html=text/html
+            </value>
+        </property>
+        <property name="defaultContentType" value="text/html"/>
     </bean>
 </beans>

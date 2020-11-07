@@ -11,7 +11,20 @@ public class Role {
 	private Date creationDate; //创建时间
 	private Integer modifyBy; //更新者
 	private Date modifyDate;//更新时间
-	
+
+	@Override
+	public String toString() {
+		return "Role{" +
+				"id=" + id +
+				", roleCode='" + roleCode + '\'' +
+				", roleName='" + roleName + '\'' +
+				", createdBy=" + createdBy +
+				", creationDate=" + creationDate +
+				", modifyBy=" + modifyBy +
+				", modifyDate=" + modifyDate +
+				'}';
+	}
+
 	public Integer getId() {
 		return id;
 	}

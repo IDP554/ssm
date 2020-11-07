@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="/WEB-INF/jsp/common/head.jsp"%>
+<%@include file="common/head.jsp"%>
 
 <div class="right">
        <div class="location">
@@ -8,7 +8,7 @@
            <span>订单管理页面</span>
        </div>
        <div class="search">
-       <form method="get" action="${pageContext.request.contextPath }/jsp/bill.do">
+       <form method="get" action="/billlist.html">
 			<input name="method" value="query" class="input-text" type="hidden">
 			<span>商品名称：</span>
 			<input name="queryProductName" type="text" value="${queryProductName }">
@@ -95,5 +95,5 @@
     </div>
 </div>
 
-<%@include file="/WEB-INF/jsp/common/foot.jsp" %>
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/billlist.js"></script>
+<%@include file="common/foot.jsp" %>
+<script type="text/javascript" src="statics/js/billlist.js"></script>

@@ -106,6 +106,7 @@ public class BillServlet extends HttpServlet {
 		outPrintWriter.flush();
 		outPrintWriter.close();
 	}
+
 	private void getBillById(HttpServletRequest request, HttpServletResponse response,String url)
 			throws ServletException, IOException {
 		String id = request.getParameter("billid");
@@ -151,6 +152,7 @@ public class BillServlet extends HttpServlet {
 			request.getRequestDispatcher("billmodify.jsp").forward(request, response);
 		}
 	}
+
 	private void delBill(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String id = request.getParameter("billid");
@@ -173,6 +175,7 @@ public class BillServlet extends HttpServlet {
 		outPrintWriter.flush();
 		outPrintWriter.close();
 	}
+
 	private void add(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String billCode = request.getParameter("billCode");
@@ -207,6 +210,8 @@ public class BillServlet extends HttpServlet {
 		}
 		
 	}
+
+
 	private void query(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		

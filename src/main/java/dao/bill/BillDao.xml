@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.bill.BillDao">
+    <insert id="add" parameterType="bill">
+        insert into smbms_bill (billCode,productName,productDesc,productUnit,productCount,totalPrice,isPayment,providerId,createdBy,creationDate)
+        values(#{billCode},#{productName},#{productDesc},#{productUnit},#{productCount},#{totalPrice},#{isPayment},#{providerId},#{createdBy},#{creationDate})
+    </insert>
+    <select id="getBillList">
+        select b.*,p.proName as providerName from smbms_bill b inner join smbms_provider p on b.providerId = p.id
+        <trim prefix="where" prefixOverrides="and">
+            <if test="productName != null and productName != ''">
+                and productName like concat('%',#{productName},'%')
+            </if>
+            <if test="providerId != null and providerId != ''">
+                and providerId = #{providerId}
+            </if>
+            <if test="isPayment != null and isPayment != ''">
+                and isPayment = #{isPayment}
+            </if>
+        </trim>
+    </select>
+    <delete id="deleteBillById">
+        delete from smbms_bill where id=#{delId}
+    </delete>
+    <select id="getBillById">
+        select b.*,p.proName as providerName from smbms_bill b inner join smbms_provider p on b.providerId = p.id
+        <trim prefix="where" prefixOverrides="and">
+            b.id = #{id}
+        </trim>
+    </select>
+    <update id="modify" parameterType="bill">
+        update smbms_bill
+        <trim prefix="set" suffixOverrides="," suffix="where id = #{id}">
+            <if test="productName != null and productName != ''">productName = #{productName}</if>
+            <if test="productDesc != null and productDesc != ''">productDesc = #{productDesc}</if>
+            <if test="productUnit != null and productUnit != ''">productUnit = #{productUnit}</if>
+            <if test="productCount != null and productCount != ''">productCount = #{productCount}</if>
+            <if test="totalPrice != null and totalPrice != ''">totalPrice = #{totalPrice}</if>
+            <if test="isPayment != null and isPayment != ''">isPayment = #{isPayment}</if>
+            <if test="providerId != null and providerId != ''">providerId = #{providerId}</if>
+            <if test="modifyBy != null and modifyBy != ''">modifyBy = #{modifyBy}</if>
+            <if test="modifyDate != null and modifyDate != ''">modifyDate = #{modifyDate}</if>
+        </trim>
+    </update>
+    <select id="getBillCountByProviderId" resultType="int">
+        select count(1) as billCount from smbms_bill where providerId = #{providerId}
+    </select>
+</mapper>

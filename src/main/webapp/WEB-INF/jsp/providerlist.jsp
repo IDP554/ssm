@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@include file="/WEB-INF/jsp/common/head.jsp"%>
+	pageEncoding="UTF-8" isELIgnored="false" %>
+<%@include file="common/head.jsp"%>
 
 <div class="right">
         <div class="location">
@@ -8,7 +8,7 @@
             <span>供应商管理页面</span>
         </div>
         <div class="search">
-        	<form method="get" action="${pageContext.request.contextPath }/jsp/provider.do">
+        	<form method="get" action="/provider.html">
 				<input name="method" value="query" type="hidden">
 				<span>供应商编码：</span>
 				<input name="queryProCode" type="text" value="${queryProCode }">
@@ -17,7 +17,7 @@
 				<input name="queryProName" type="text" value="${queryProName }">
 				
 				<input value="查 询" type="submit" id="searchbutton">
-				<a href="${pageContext.request.contextPath }/WEB-INF/jsp/provideradd.jsp">添加供应商</a>
+				<a href="/addProvider.html">添加供应商</a>
 			</form>
         </div>
         <!--供应商操作表格-->
@@ -54,9 +54,9 @@
 					</span>
 					</td>
 					<td>
-					<span><a class="viewProvider" href="javascript:;" proid=${provider.id } proname=${provider.proName }><img src="${pageContext.request.contextPath }/images/read.png" alt="查看" title="查看"/></a></span>
-					<span><a class="modifyProvider" href="javascript:;" proid=${provider.id } proname=${provider.proName }><img src="${pageContext.request.contextPath }/images/xiugai.png" alt="修改" title="修改"/></a></span>
-					<span><a class="deleteProvider" href="javascript:;" proid=${provider.id } proname=${provider.proName }><img src="${pageContext.request.contextPath }/images/schu.png" alt="删除" title="删除"/></a></span>
+					<span><a class="viewProvider" href="javascript:;" proid=${provider.id } proname=${provider.proName }><img src="statics/images/read.png" alt="查看" title="查看"/></a></span>
+					<span><a class="modifyProvider" href="javascript:;" proid=${provider.id } proname=${provider.proName }><img src="statics/images/xiugai.png" alt="修改" title="修改"/></a></span>
+					<span><a class="deleteProvider" href="javascript:;" proid=${provider.id } proname=${provider.proName }><img src="statics/images/schu.png" alt="删除" title="删除"/></a></span>
 					</td>
 				</tr>
 			</c:forEach>
@@ -78,5 +78,5 @@
    </div>
 </div>
 
-<%@include file="/WEB-INF/jsp/common/foot.jsp" %>
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/providerlist.js"></script>
+<%@include file="common/foot.jsp" %>
+<script type="text/javascript" src="statics/js/providerlist.js"></script>
